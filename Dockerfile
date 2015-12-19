@@ -20,6 +20,9 @@ RUN mkdir /nodejs && curl http://nodejs.org/dist/v0.10.28/node-v0.10.28-linux-x6
 
 ENV PATH $PATH:/nodejs/bin
 
+# Make sure npm is at it's latest
+RUN npm install npm@latest -g
+
 # Finish installing node
 
 # Install restify, nodemon
