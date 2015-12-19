@@ -12,13 +12,19 @@ RUN service mongod start
 RUN mkdir -p /data/db
 
 RUN mkdir /Development
+## Install node from repo
 RUN cd /Development && git clone git://github.com/joyent/node
-
 RUN cd /Development/node && ./configure && make && make install
+
+## Finish installing node
+## Remove /Development/node folder
 RUN rm -rf /Development/node
+## Chang permission on /Development folder
 RUN chmod 777 -R /Development
 
-RUN npm install -g yo bower grunt-cli generator-meanjs express
+## Install restify, nodemon
+RUN npm install -g restify nodemon
+# RUN npm install -g yo bower grunt-cli generator-meanjs express
 
 # RUN curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
 
