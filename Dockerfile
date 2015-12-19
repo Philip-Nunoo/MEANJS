@@ -4,23 +4,23 @@ MAINTAINER Matt Koski <maccam912@gmail.com>
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.0.list
 
-RUN apt-get update 
+RUN apt-get update -y
 #RUN apt-get install -y mongodb-org
-RUN apt-get install -y git python build-essential curl
+RUN apt-get install -y git python build-essential curl ca-certificates
 #RUN service mongodb start
 
 #RUN mkdir -p /data/db
 
 RUN mkdir /Development
 # Install node from repo
-RUN cd /Development && git clone git://github.com/joyent/node
-RUN cd /Development/node && ./configure && make && make install
+#RUN cd /Development && git clone git://github.com/joyent/node
+#RUN cd /Development/node && ./configure && make && make install
+
+RUN mkdir /nodejs && curl http://nodejs.org/dist/v0.10.28/node-v0.10.28-linux-x64.tar.gz | tar xvzf - -C /nodejs --strip-components=1
+
+ENV PATH $PATH:/nodejs/bin
 
 # Finish installing node
-# Remove /Development/node folder
-RUN rm -rf /Development/node
-# Chang permission on /Development folder
-RUN chmod 777 -R /Development
 
 # Install restify, nodemon
 RUN npm install -g restify nodemon
