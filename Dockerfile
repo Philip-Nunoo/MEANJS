@@ -12,17 +12,17 @@ RUN service mongod start
 RUN mkdir -p /data/db
 
 RUN mkdir /Development
-## Install node from repo
+# Install node from repo
 RUN cd /Development && git clone git://github.com/joyent/node
 RUN cd /Development/node && ./configure && make && make install
 
-## Finish installing node
-## Remove /Development/node folder
+# Finish installing node
+# Remove /Development/node folder
 RUN rm -rf /Development/node
-## Chang permission on /Development folder
+# Chang permission on /Development folder
 RUN chmod 777 -R /Development
 
-## Install restify, nodemon
+# Install restify, nodemon
 RUN npm install -g restify nodemon
 # RUN npm install -g yo bower grunt-cli generator-meanjs express
 
