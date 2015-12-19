@@ -23,7 +23,7 @@ ENV PATH $PATH:/nodejs/bin
 # Finish installing node
 
 # Install restify, nodemon
-RUN npm install -g restify nodemon
+RUN npm install -g restify nodemon coffee-script
 # RUN npm install -g yo bower grunt-cli generator-meanjs express
 
 # RUN curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
